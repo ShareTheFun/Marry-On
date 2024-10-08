@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Labaco Downloader (Youtube)</title>
+    <link rel="stylesheet" href="public/docs.css">
+</head>
+<body>
+    <div class="profile">
+        <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExaW9kY2dmMHhmeTd1MzE5cTJvM3hpd2F1a21maDc2N3IyaDgyZ2hycSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/fZdzEHC8sMC0E/giphy.gif" alt="Profile">
+    </div>
+    <h1>Labaco Downloader (Youtube)</h1>
+    <p class="version">Version 1.0.30</p>
+    <p>An YouTube Downloader Made by Mart John Labaco (Jmlabaco,Jm) by JavaScript. This Website allows you to download YouTube videos and audio for free, no payments needed. Enjoy!</p>
+    <input type="text" id="ytUrl" placeholder="Enter YouTube URL">
+    <button id="searchButton">🔎 Search 🔍</button>
+    <div class="error-message" id="errorMessage"></div>
+    <div class="video-details" id="videoDetails" style="display: none;">
+        <h3 id="videoTitle"></h3>
+        <video id="videoPlayer" controls>
+            <source id="videoSource" src="" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="download-buttons" id="downloadButtons" style="display: none;">
+            <a href="#" id="downloadAudio">Download Audio</a>
+        </div>
+        <p id="videoDesc"></p>
+    </div>
+    <button class="back-button" onclick="goBack()">Back to Homepage</button>
+    <p class="disclaimer">Disclaimer: All downloads are for personal use only. Please respect copyright laws.</p>
+    <p class="copyright">©Jmlabaco Copyright Disclaimer</p>
+    <script src="public/docs.js"></script>
+</body>
+</html>
