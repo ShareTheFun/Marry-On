@@ -56,10 +56,20 @@ button:hover {
     white-space: normal;
 }
 
-video {
-    margin: 20px 0;
+.video-details p a {
+    color: blue;
+    text-decoration: underline;
+}
+
+.video-container {
+    position: relative;
     width: 100%;
     max-width: 720px;
+    margin: 20px auto;
+}
+
+video {
+    width: 100%;
     height: auto;
 }
 
@@ -141,7 +151,8 @@ video {
 }
 
 .timestamp {
-    color: violet;
+    color: yellow;
     text-decoration: underline;
     cursor: pointer;
+    user-select: none;
 }
