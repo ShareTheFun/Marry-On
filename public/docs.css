@@ -156,3 +156,13 @@ video {
     cursor: pointer;
     user-select: none;
 }
+
+/* New Hashtag styling */
+.hashtag {
+    color: red !important; /* Force hashtag to be red */
+    text-decoration: none; /* Remove underline */
+}
+
+.hashtag:hover {
+    text-decoration: underline; /* Add underline on hover */
+}

@@ -54,8 +54,9 @@ function fetchVideoDetails() {
 function formatDescription(desc) {
     return desc
         .replace(/\n/g, '<br>') // Replace newline characters with HTML line breaks
-        .replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" class="link" target="_blank">$1</a>')
-        .replace(/(\d{1,2}:\d{2})/g, '<span class="timestamp" onclick="seekToTime(\'$1\')">$1</span>');
+        .replace(/((https?:\/\/)?([\w\-]+\.)+[\w\-]+(\/[\w\-._~:\/?#[\]@!$&'()*+,;=]*)?)/g, '<a href="$1" class="link" target="_blank">$1</a>') // Properly isolate URLs
+        .replace(/(\d{1,2}:\d{2})/g, '<span class="timestamp" onclick="seekToTime(\'$1\')">$1</span>') // Convert timestamps
+        .replace(/#(\w+)/g, '<a href="https://www.youtube.com/hashtag/$1" class="hashtag" target="_blank">#$1</a>'); // Convert hashtags to YouTube links
 }
 
 function seekToTime(time) {
