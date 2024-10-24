@@ -52,7 +52,7 @@ const server = http.createServer((req, res) => {
         const url = new URL(req.url, `http://${req.headers.host}`);
         const link = url.searchParams.get('link');
         if (link) {
-            fetch(`https://king-luffy.onrender.com/api/ytdl?link=${encodeURIComponent(link)}`)
+            fetch(`https://luffy-api-v3.onrender.com/api/ytdl?link=${encodeURIComponent(link)}`)
                 .then(apiRes => apiRes.json())
                 .then(data => {
                     res.writeHead(200, { 'Content-Type': 'application/json' });
