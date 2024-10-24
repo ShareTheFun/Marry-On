@@ -1,79 +1,32 @@
-const http = require('http');
-const fs = require('fs');
+const express = require('express');
 const path = require('path');
+const fetch = require('node-fetch');
 
+const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Function to serve files
-const serveFile = (filePath, res) => {
-    fs.readFile(filePath, (err, data) => {
-        if (err) {
-            res.writeHead(404, { 'Content-Type': 'text/plain' });
-            res.end('404 Not Found');
-        } else {
-            const extname = String(path.extname(filePath)).toLowerCase();
-            let contentType = 'text/html';
-            switch (extname) {
-                case '.js':
-                    contentType = 'text/javascript';
-                    break;
-                case '.css':
-                    contentType = 'text/css';
-                    break;
-                case '.json':
-                    contentType = 'application/json';
-                    break;
-                case '.png':
-                    contentType = 'image/png';
-                    break;
-                case '.jpg':
-                    contentType = 'image/jpg';
-                    break;
-                case '.gif':
-                    contentType = 'image/gif';
-                    break;
-            }
-            res.writeHead(200, { 'Content-Type': contentType });
-            res.end(data, 'utf-8');
-        }
-    });
-};
+app.use(express.static('public'));
 
-// Create server
-const server = http.createServer((req, res) => {
-    console.log(`Request for: ${req.url}`);
+app.get('/api/ytdl', async (req, res) => {
+  const { link } = req.query;
+  if (!link) {
+    return res.status(400).json({ status: false, message: 'Missing link parameter' });
+  }
 
-    // Serve static files from the public directory
-    if (req.url === '/') {
-        serveFile(path.join(__dirname, 'public', 'docs.html'), res);
-    } else if (req.url.startsWith('/public/')) {
-        serveFile(path.join(__dirname, req.url), res);
-    } else if (req.url.startsWith('/api/ytdl')) {
-        const url = new URL(req.url, `http://${req.headers.host}`);
-        const link = url.searchParams.get('link');
-        if (link) {
-            fetch(`https://king-luffy.onrender.com/api/ytdl?link=${encodeURIComponent(link)}`)
-                .then(apiRes => apiRes.json())
-                .then(data => {
-                    res.writeHead(200, { 'Content-Type': 'application/json' });
-                    res.end(JSON.stringify(data));
-                })
-                .catch(err => {
-                    console.error(err);
-                    res.writeHead(500, { 'Content-Type': 'text/plain' });
-                    res.end('Error fetching data from API');
-                });
-        } else {
-            res.writeHead(400, { 'Content-Type': 'text/plain' });
-            res.end('Bad Request: Missing link parameter');
-        }
-    } else {
-        res.writeHead(404, { 'Content-Type': 'text/plain' });
-        res.end('404 Not Found');
-    }
+  try {
+    const apiRes = await fetch(`https://luffy-api-v3.onrender.com/api/ytdl?link=${encodeURIComponent(link)}`);
+    const data = await apiRes.json();
+    res.json(data);
+  } catch (error) {
+    console.error('Error fetching data from API:', error);
+    res.status(500).json({ status: false, message: 'Error fetching data from API' });
+  }
 });
 
-// Start server
-server.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'docs.html'));
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
 });

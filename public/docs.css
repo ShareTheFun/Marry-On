@@ -1,168 +1,95 @@
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    margin-top: 20px;
-    background: url('https://i.gifer.com/1pX9.gif') no-repeat center center fixed;
-    background-size: cover;
-    color: white;
-    overflow-x: hidden;
-}
-
-input {
-    padding: 10px;
-    width: 90%;
-    max-width: 400px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    margin-bottom: 20px;
-}
-
-button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 90%;
-    max-width: 400px;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
-.video-details {
-    margin-top: 20px;
-    padding: 10px;
-    border-radius: 8px;
-    background-color: rgba(0, 0, 0, 0.7);
-}
-
-.video-details h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
-}
-
-.video-details p {
-    font-size: 14px;
-    color: #ddd;
-    max-width: 1000px;
-    min-height: 150px;
-    margin: 0 auto;
-    text-align: left;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    white-space: normal;
-}
-
-.video-details p a {
-    color: blue;
-    text-decoration: underline;
-}
-
-.video-container {
-    position: relative;
-    width: 100%;
-    max-width: 720px;
-    margin: 20px auto;
-}
-
-video {
-    width: 100%;
-    height: auto;
-}
-
-.download-buttons {
-    margin-top: 20px;
-}
-
-.download-buttons a {
-    margin: 0 5px;
-    text-decoration: none;
-    padding: 10px 15px;
-    background-color: red;
-    color: white;
-    border-radius: 5px;
-    display: inline-block;
-    font-size: 14px;
-}
-
-.download-buttons a:hover {
-    background-color: darkred;
-}
-
-.profile {
-    margin-bottom: 20px;
-}
-
-.profile img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    border: 2px solid white;
-    object-fit: cover;
-}
-
-.version {
-    font-size: 14px;
-    margin-top: 10px;
-}
-
-.disclaimer {
-    font-size: 12px;
-    color: #ddd;
-    margin-top: 20px;
-}
-
-.copyright {
-    font-size: 12px;
-    color: #ddd;
-    margin-top: 20px;
-}
-
-.back-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 90%;
-    max-width: 400px;
-}
-
-.back-button:hover {
-    background-color: #0056b3;
-}
-
-.error-message {
-    color: red;
-    margin-top: 10px;
-    font-size: 14px;
-    display: none;
+  font-family: 'Arial', sans-serif;
+  background: url('https://i.gifer.com/1pX9.gif') no-repeat center center fixed;
+  background-size: cover;
 }
 
 .link {
-    color: blue;
-    text-decoration: underline;
-    cursor: pointer;
+  color: #3182ce;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .timestamp {
-    color: yellow;
-    text-decoration: underline;
-    cursor: pointer;
-    user-select: none;
+  color: #ecc94b;
+  text-decoration: underline;
+  cursor: pointer;
+  user-select: none;
 }
 
-/* New Hashtag styling */
 .hashtag {
-    color: red !important; /* Force hashtag to be red */
-    text-decoration: none; /* Remove underline */
+  color: #e53e3e !important;
+  text-decoration: none;
 }
 
 .hashtag:hover {
-    text-decoration: underline; /* Add underline on hover */
+  text-decoration: underline;
+}
+
+/* Custom scrollbar for video description */
+#videoDesc::-webkit-scrollbar {
+  width: 8px;
+}
+
+#videoDesc::-webkit-scrollbar-track {
+  background: #2d3748;
+}
+
+#videoDesc::-webkit-scrollbar-thumb {
+  background-color: #4a5568;
+  border-radius: 20px;
+  border: 2px solid #2d3748;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  body {
+      padding: 1rem;
+  }
+
+  h1 {
+      font-size: 1.5rem;
+  }
+
+  #videoDetails {
+      margin-top: 1rem;
+  }
+
+  #videoDesc {
+      font-size: 0.875rem;
+  }
+}
+
+/* Button Animations */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+[data-animation="pulse"]:hover { animation: pulse 0.5s infinite; }
+[data-animation="bounce"]:hover { animation: bounce 0.5s infinite; }
+[data-animation="shake"]:hover { animation: shake 0.5s; }
+
+/* Loading Animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
 }
