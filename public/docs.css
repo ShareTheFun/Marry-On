@@ -93,3 +93,93 @@ body {
 .animate-spin {
   animation: spin 1s linear infinite;
 }
+
+/* Input validation styles */
+#ytUrl.valid {
+  border-color: #48bb78;
+}
+
+#ytUrl.invalid {
+  border-color: #f56565;
+}
+
+#searchButton:not(:disabled) {
+  background-color: #4299e1;
+  cursor: pointer;
+}
+
+#searchButton:not(:disabled):hover {
+  background-color: #3182ce;
+}
+
+/* Intro Animation Styles */
+#intro {
+  transition: opacity 1s ease-out;
+}
+
+.intro-text {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.fade-out {
+  animation: fadeOut 1s ease-out forwards;
+}
+
+/* Full View Controls Styles */
+#fullViewControls {
+  opacity: 0;
+  transition: opacity  0.3s ease-in-out;
+}
+
+#fullViewControls:hover {
+  opacity: 1;
+}
+
+#brightnessControl, #volumeControl {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 5px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  transition: opacity .2s;
+}
+
+#brightnessControl:hover, #volumeControl:hover {
+  opacity: 1;
+}
+
+#brightnessControl::-webkit-slider-thumb, #volumeControl::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #4299e1;
+  cursor: pointer;
+}
+
+#brightnessControl::-moz-range-thumb, #volumeControl::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #4299e1;
+  cursor: pointer;
+}
